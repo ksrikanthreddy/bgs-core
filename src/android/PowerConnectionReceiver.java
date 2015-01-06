@@ -3,6 +3,7 @@ package com.red_folder.phonegap.plugin.backgroundservice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.BatteryManager;
 
 public class PowerConnectionReceiver extends BroadcastReceiver {
     @Override
