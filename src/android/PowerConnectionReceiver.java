@@ -28,11 +28,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
 	private String notificationTitle = "App Service";
 	private String notificationText = "Running";
 	private Notification getActivityNotification(String title, String text){
-		//Build a Notification required for running service in foreground.
-        Intent main = getApplicationContext().getPackageManager().getLaunchIntentForPackage(getApplicationContext().getPackageName());
-        main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 1000, main,  PendingIntent.FLAG_UPDATE_CURRENT);
-
+		
         int icon = R.drawable.star_big_on;
         int normalIcon = getResources().getIdentifier("icon", "drawable", getPackageName());
         int notificationIcon = getResources().getIdentifier("notificationicon", "drawable", getPackageName());         
@@ -65,6 +61,18 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(getApplicationContext().NOTIFICATION_SERVICE);
         mNotificationManager.notify(notif_id, notification);
 	}
+	
+	@TargetApi(16)
+    private Notification buildForegroundNotification(Notification.Builder builder) {
+        return builder.build();
+    }
+
+    @SuppressWarnings("deprecation")
+    @TargetApi(15)
+    private Notification buildForegroundNotificationCompat(Notification.Builder builder) {
+        return builder.getNotification();
+    }
+    
     @Override
     public void onReceive(Context context, Intent intent) { 
         int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
