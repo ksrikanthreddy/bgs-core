@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 
 public class PowerConnectionReceiver extends BroadcastReceiver {
-    
+    int notifyID = 11;
     public void showNotification(Context context, String title, String description){
     	try{
     	final NotificationManager mgr=
@@ -27,13 +27,20 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
 	        note.setLatestEventInfo(context, title, description, appIntent);
             //After uncomment this line you will see number of notification arrived
             //note.number=2;
-            mgr.notify(100, note);	
+            mgr.notify(notifyID, note);	
     	}
     	catch(Exception e){
     		Toast toast = Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT);
             	toast.show();
     	}
     }
+    
+    public static void cancelNotification(Context ctx, int notifyId) {
+    	String ns = Context.NOTIFICATION_SERVICE;
+    	NotificationManager nMgr = (NotificationManager) ctx.getSystemService(ns);
+    	nMgr.cancel(notifyId);
+    }
+
     @Override
     public void onReceive(Context context, Intent intent) { 
         Toast toast1 = Toast.makeText(context, "Safe Battery Enabled", Toast.LENGTH_SHORT);
@@ -72,10 +79,14 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         	batteryStatus = "AC Power";
         }
         if(isCharging){
-        	showNotification(context,"Safe Battery", batteryStatus + " Charging.");
+        	showNotification(context,"Safe Battery Enabled", batteryStatus + " Charging.");
+        }
+        else{
+        	cancelNotification(context,notifyID);
         }
         if(isFull){
-        	showNotification(context,"Safe Battery", "100% charged. Unplug Charger.");
+        	cancelNotification(context,notifyID);
+        	showNotification(context,"Safe Battery Enabled", "100% charged. Unplug Charger.");
         }
         }
         catch(Exception e){
