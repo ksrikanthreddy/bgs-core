@@ -28,14 +28,6 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
                                                             "Android Example Status message!",
                                                             System.currentTimeMillis());
              
-            // This pending intent will open after notification click
-            PendingIntent i=PendingIntent.getActivity(this, 0,
-                                                    new Intent(this, MainActivity.class),
-                                                    0);
-             
-            note.setLatestEventInfo(this, "Android Example Notification Title",
-                                    "This is the android example notification message", i);
-             
             //After uncomment this line you will see number of notification arrived
             //note.number=2;
             mgr.notify(100, note);
