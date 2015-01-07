@@ -64,8 +64,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         	batteryStatus = "AC Power";
         }
         if(isCharging){
-        	Toast toast2 = Toast.makeText(context, "Safe Battery Enabled", Toast.LENGTH_SHORT);
-        	toast2.show();
+        	showNotification(context,"Safe Battery Enabled", "Charging");
         }
         else{
         	cancelNotification(context,notifyID);
