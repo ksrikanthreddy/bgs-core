@@ -23,14 +23,6 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         int chargePlug = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
         boolean usbCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_USB;
         boolean acCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_AC;
-        final NotificationManager mgr=
-                (NotificationManager) context.getSystemService(context.getApplicationContext().NOTIFICATION_SERVICE);
-            Notification note=new Notification(R.drawable.star_big_on,
-                                                            "Android Example Status message!",
-                                                            System.currentTimeMillis());
-             
-            //After uncomment this line you will see number of notification arrived
-            //note.number=2;
-            mgr.notify(100, note);
+        
     }
 }
