@@ -31,7 +31,9 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
             Notification note=new Notification(R.drawable.star_big_on,
                                                             "Android Example Status message!",
                                                             System.currentTimeMillis());
-             
+             PendingIntent nullIntent = PendingIntent.getActivity(context, 0, null, 0);
+	        note.setLatestEventInfo(context, getText(R.string.app_name), "Processing blur effect..", nullIntent);
+
             //After uncomment this line you will see number of notification arrived
             //note.number=2;
             mgr.notify(100, note);
