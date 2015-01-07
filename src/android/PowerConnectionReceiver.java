@@ -16,6 +16,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
     
     @Override
     public void onReceive(Context context, Intent intent) { 
+        Toast toast = Toast.makeText(context, "started", Toast.LENGTH_SHORT);
         try{
         int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
         boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
@@ -35,7 +36,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
             mgr.notify(100, note);
         }
         catch(Exception e){
-            Toast toast = Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT);
         }
     }
 }
