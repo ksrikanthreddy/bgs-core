@@ -45,6 +45,14 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         int chargePlug = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
         boolean usbCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_USB;
         boolean acCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_AC;
+        Toast toast5 = Toast.makeText(context, "status - "+String.valueOf(status), Toast.LENGTH_SHORT);
+            toast5.show();
+            Toast toast6 = Toast.makeText(context, "BATTERY_STATUS_CHARGING - "+String.valueOf(BatteryManager.BATTERY_STATUS_CHARGING), Toast.LENGTH_SHORT);
+            toast6.show();
+            Toast toast7 = Toast.makeText(context, "chargePlug - "+String.valueOf(chargePlug), Toast.LENGTH_SHORT);
+            toast7.show();
+            Toast toast8 = Toast.makeText(context, "BATTERY_PLUGGED_USB - "+String.valueOf(BatteryManager.BATTERY_PLUGGED_USB), Toast.LENGTH_SHORT);
+            toast8.show();
         Toast toast2 = Toast.makeText(context, "isCharging - "+String.valueOf(isCharging), Toast.LENGTH_SHORT);
             toast2.show();
             Toast toast3 = Toast.makeText(context, "isFull - "+String.valueOf(isFull), Toast.LENGTH_SHORT);
