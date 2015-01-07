@@ -16,6 +16,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
     
     @Override
     public void onReceive(Context context, Intent intent) { 
+        try{
         int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
         boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
                             status == BatteryManager.BATTERY_STATUS_FULL;
@@ -32,5 +33,9 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
             //After uncomment this line you will see number of notification arrived
             //note.number=2;
             mgr.notify(100, note);
+        }
+        catch(Exception e){
+            Toast toast = Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT);
+        }
     }
 }
