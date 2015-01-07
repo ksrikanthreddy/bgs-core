@@ -27,20 +27,24 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         boolean usbCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_USB;
         boolean acCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_AC;
         final NotificationManager mgr=
-                (NotificationManager) context.getSystemService(context.getApplicationContext().NOTIFICATION_SERVICE);
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             Notification note=new Notification(R.drawable.star_big_on,
                                                             "Android Example Status message!",
                                                             System.currentTimeMillis());
-             PendingIntent nullIntent = PendingIntent.getActivity(context, 0, null, 0);
-	        note.setLatestEventInfo(context, "Safe Battery", "Processing blur effect..", nullIntent);
+		Intent contentIntent = new Intent();
+             PendingIntent appIntent = PendingIntent.getActivity(context, 0, contentIntent, 0);
+	        note.setLatestEventInfo(context, "1", "2", appIntent);
 
             //After uncomment this line you will see number of notification arrived
             //note.number=2;
             mgr.notify(100, note);
         }
         catch(Exception e){
+        	Toast toast2 = Toast.makeText(context, "exception occured", Toast.LENGTH_SHORT);
+            toast2.show();
             Toast toast = Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT);
             toast.show();
+            
         }
     }
 }
