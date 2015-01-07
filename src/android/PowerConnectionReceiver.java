@@ -28,7 +28,10 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
 	private String notificationTitle = "App Service";
 	private String notificationText = "Running";
 	private Notification getActivityNotification(String title, String text){
-		
+	Intent main = getApplicationContext().getPackageManager().getLaunchIntentForPackage(getApplicationContext().getPackageName());
+        main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 1000, main,  PendingIntent.FLAG_UPDATE_CURRENT);
+
         int icon = R.drawable.star_big_on;
         int normalIcon = getResources().getIdentifier("icon", "drawable", getPackageName());
         int notificationIcon = getResources().getIdentifier("notificationicon", "drawable", getPackageName());         
