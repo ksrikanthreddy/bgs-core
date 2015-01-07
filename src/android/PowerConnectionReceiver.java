@@ -56,20 +56,6 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         int chargePlug = batteryStatusIntent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
         boolean usbCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_USB;
         boolean acCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_AC;
-        Toast toast5 = Toast.makeText(context, "status - "+String.valueOf(status), Toast.LENGTH_SHORT);
-            toast5.show();
-            Toast toast6 = Toast.makeText(context, "BATTERY_STATUS_CHARGING - "+String.valueOf(BatteryManager.BATTERY_STATUS_CHARGING), Toast.LENGTH_SHORT);
-            toast6.show();
-            Toast toast7 = Toast.makeText(context, "chargePlug - "+String.valueOf(chargePlug), Toast.LENGTH_SHORT);
-            toast7.show();
-            Toast toast8 = Toast.makeText(context, "BATTERY_PLUGGED_USB - "+String.valueOf(BatteryManager.BATTERY_PLUGGED_USB), Toast.LENGTH_SHORT);
-            toast8.show();
-        Toast toast2 = Toast.makeText(context, "isCharging - "+String.valueOf(isCharging), Toast.LENGTH_SHORT);
-            toast2.show();
-            Toast toast3 = Toast.makeText(context, "isFull - "+String.valueOf(isFull), Toast.LENGTH_SHORT);
-            toast3.show();
-            Toast toast4 = Toast.makeText(context, "usbCharge - "+String.valueOf(usbCharge), Toast.LENGTH_SHORT);
-            toast4.show();
         if(usbCharge)
         {
         	batteryStatus = "USB";
@@ -79,13 +65,12 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         	batteryStatus = "AC Power";
         }
         if(isCharging){
-        	showNotification(context,"Safe Battery Enabled", batteryStatus + " Charging.");
+        	Toast toast = Toast.makeText(context, "Safe Battery Enabled", Toast.LENGTH_SHORT);
         }
         else{
         	cancelNotification(context,notifyID);
         }
         if(isFull){
-        	cancelNotification(context,notifyID);
         	showNotification(context,"Safe Battery Enabled", "100% charged. Unplug Charger.");
         }
         }
