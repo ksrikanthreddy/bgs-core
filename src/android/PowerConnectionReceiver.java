@@ -13,7 +13,7 @@ import android.R;
 
 
 public class PowerConnectionReceiver extends BroadcastReceiver {
-    
+    @SuppressWarnings("deprecation")
     @Override
     public void onReceive(Context context, Intent intent) { 
         int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
