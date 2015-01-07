@@ -43,8 +43,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) { 
-        Toast toast1 = Toast.makeText(context, "Safe Battery Enabled", Toast.LENGTH_SHORT);
-        toast1.show();
+        
         try{
        	String batteryStatus = "";
        	IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
@@ -65,7 +64,8 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         	batteryStatus = "AC Power";
         }
         if(isCharging){
-        	Toast toast2 = Toast.makeText(context, "Safe Battery Enabled", Toast.LENGTH_SHORT).show();
+        	Toast toast2 = Toast.makeText(context, "Safe Battery Enabled", Toast.LENGTH_SHORT);
+        	toast2.show();
         }
         else{
         	cancelNotification(context,notifyID);
