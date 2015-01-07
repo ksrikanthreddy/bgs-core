@@ -8,6 +8,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.R;
 import android.widget.Toast;
 
@@ -39,10 +40,13 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         toast1.show();
         try{
        	String batteryStatus = "";
-        int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+       	IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        Intent batteryStatus = context.registerReceiver(null, ifilter);
+        
+        int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
         boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING || status == BatteryManager.BATTERY_STATUS_FULL;
     	boolean isFull = status == BatteryManager.BATTERY_STATUS_FULL;
-        int chargePlug = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
+        int chargePlug = batteryStatus.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
         boolean usbCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_USB;
         boolean acCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_AC;
         Toast toast5 = Toast.makeText(context, "status - "+String.valueOf(status), Toast.LENGTH_SHORT);
