@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 public class PowerConnectionReceiver extends BroadcastReceiver {
     int notifyID = 11;
-    static MediaPlayer mediaPlayer;
+    MediaPlayer mediaPlayer;
     public void showNotification(Context context, String title, String description){
     	try{
     	final NotificationManager mgr=
@@ -47,13 +47,13 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
     	}
     }
     
-    public static void cancelNotification(Context ctx, int notifyId) {
+    public void cancelNotification(Context ctx, int notifyId) {
     	String ns = Context.NOTIFICATION_SERVICE;
     	NotificationManager nMgr = (NotificationManager) ctx.getSystemService(ns);
     	nMgr.cancel(notifyId);
-    	if(mediaPlayer != null){
-            mediaPlayer.stop();
-    	}
+    	Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+	mediaPlayer = MediaPlayer.create(context, notification);
+        mediaPlayer.stop();
     }
 
     @Override
