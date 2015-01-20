@@ -31,11 +31,12 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
             //After uncomment this line you will see number of notification arrived
             //note.number=2;
             mgr.notify(notifyID, note);	
-            if(mediaPlayer.isPlaying()){
-            	mediaPlayer.stop();
-            }
+            
             Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
 	    mediaPlayer = MediaPlayer.create(context, notification);
+	    if(mediaPlayer.isPlaying()){
+            	mediaPlayer.stop();
+            }
             mediaPlayer.start();
     	}
     	catch(Exception e){
