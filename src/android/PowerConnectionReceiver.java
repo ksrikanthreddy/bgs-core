@@ -79,7 +79,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         }
         if(isCharging){
         	showNotification(context,"Safe Battery Enabled", "Charging "+Float.toString(batteryPct * 100)+"%");
-        	if(mediaPlayer.isPlaying()){
+        	if(mediaPlayer.isLooping() || mediaPlayer.isPlaying()){
             	    mediaPlayer.stop();
             	    Toast toast4 = Toast.makeText(context, "is charging PLAYING", Toast.LENGTH_SHORT);
             		toast4.show();
@@ -93,7 +93,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         }
         else{
         	cancelNotification(context,notifyID);
-        	if(mediaPlayer.isPlaying()){
+        	if(mediaPlayer.isLooping() || mediaPlayer.isPlaying()){
         		Toast toast6 = Toast.makeText(context, "else PLAYING", Toast.LENGTH_SHORT);
             		toast6.show();
             	    mediaPlayer.stop();
