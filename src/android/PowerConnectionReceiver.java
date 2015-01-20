@@ -2,7 +2,9 @@ package com.red_folder.phonegap.plugin.backgroundservice;
 
 import android.content.BroadcastReceiver;
 import android.os.BatteryManager;
-
+import android.media.MediaPlayer;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -28,6 +30,10 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
             //After uncomment this line you will see number of notification arrived
             //note.number=2;
             mgr.notify(notifyID, note);	
+            
+            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+	    MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), notification);
+            mediaPlayer.start();
     	}
     	catch(Exception e){
     		Toast toast = Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT);
