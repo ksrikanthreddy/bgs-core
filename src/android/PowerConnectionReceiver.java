@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 public class PowerConnectionReceiver extends BroadcastReceiver {
     int notifyID = 11;
-    MediaPlayer mediaPlayer;
+    static MediaPlayer mediaPlayer;
     public void showNotification(Context context, String title, String description){
     	try{
     	final NotificationManager mgr=
