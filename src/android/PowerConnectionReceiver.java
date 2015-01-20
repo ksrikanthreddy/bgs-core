@@ -21,11 +21,13 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
     
     public void showNotification(Context context, String title, String description){
     	try{
+    	Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
     	final NotificationManager mgr=
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             Notification note=new Notification(R.drawable.star_big_on,
                                                             title,
                                                             System.currentTimeMillis());
+             note.sound=soundUri;
 		Intent contentIntent = new Intent();
              PendingIntent appIntent = PendingIntent.getActivity(context, 0, contentIntent, 0);
 	        note.setLatestEventInfo(context, title, description, appIntent);
@@ -51,8 +53,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) { 
         
         try{
-        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
-        MediaPlayer mediaPlayer = MediaPlayer.create(context, notification);
+       
        	String batteryStatus = "";
        	IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
        	
@@ -79,30 +80,9 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         }
         if(isCharging){
         	showNotification(context,"Safe Battery Enabled", "Charging "+Float.toString(batteryPct * 100)+"%");
-        	if(mediaPlayer.isLooping() || mediaPlayer.isPlaying()){
-            	    mediaPlayer.stop();
-            	    Toast toast4 = Toast.makeText(context, "is charging PLAYING", Toast.LENGTH_SHORT);
-            		toast4.show();
-        	}
-        	else{
-        		Toast toast5 = Toast.makeText(context, "is charging NOT PLAYING", Toast.LENGTH_SHORT);
-            		toast5.show();
-        	}
-        	
-            	mediaPlayer.start();
         }
         else{
         	cancelNotification(context,notifyID);
-        	if(mediaPlayer.isLooping() || mediaPlayer.isPlaying()){
-        		Toast toast6 = Toast.makeText(context, "else PLAYING", Toast.LENGTH_SHORT);
-            		toast6.show();
-            	    mediaPlayer.stop();
-        	}
-        	else{
-        		Toast toast7 = Toast.makeText(context, "else NOT PLAYING", Toast.LENGTH_SHORT);
-            		toast7.show();
-        	}
-        	mediaPlayer.stop();
         }
         if(isFull){
         	showNotification(context,"Safe Battery Enabled", "100% charged. Unplug Charger.");
