@@ -81,13 +81,25 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         	showNotification(context,"Safe Battery Enabled", "Charging "+Float.toString(batteryPct * 100)+"%");
         	if(mediaPlayer.isPlaying()){
             	    mediaPlayer.stop();
+            	    Toast toast4 = Toast.makeText(context, "is charging PLAYING", Toast.LENGTH_SHORT);
+            		toast4.show();
+        	}
+        	else{
+        		Toast toast5 = Toast.makeText(context, "is charging NOT PLAYING", Toast.LENGTH_SHORT);
+            		toast5.show();
         	}
             	mediaPlayer.start();
         }
         else{
         	cancelNotification(context,notifyID);
         	if(mediaPlayer.isPlaying()){
+        		Toast toast6 = Toast.makeText(context, "else PLAYING", Toast.LENGTH_SHORT);
+            		toast6.show();
             	    mediaPlayer.stop();
+        	}
+        	else{
+        		Toast toast7 = Toast.makeText(context, "else NOT PLAYING", Toast.LENGTH_SHORT);
+            		toast7.show();
         	}
         }
         if(isFull){
