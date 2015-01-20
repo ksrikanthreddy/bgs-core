@@ -88,7 +88,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         		Toast toast5 = Toast.makeText(context, "is charging NOT PLAYING", Toast.LENGTH_SHORT);
             		toast5.show();
         	}
-        	mediaPlayer.stop();
+        	
             	mediaPlayer.start();
         }
         else{
