@@ -47,7 +47,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         try{
        	String batteryStatus = "";
        	IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-        Intent batteryStatusIntent = context.registerReceiver(null, ifilter);
+        Intent batteryStatusIntent = context.registerReceiver(PowerConnectionReceiver, ifilter);
         
         int status = batteryStatusIntent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
         boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING || status == BatteryManager.BATTERY_STATUS_FULL;
