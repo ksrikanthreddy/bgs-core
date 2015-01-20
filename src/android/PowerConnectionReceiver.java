@@ -51,7 +51,9 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
     	String ns = Context.NOTIFICATION_SERVICE;
     	NotificationManager nMgr = (NotificationManager) ctx.getSystemService(ns);
     	nMgr.cancel(notifyId);
-        mediaPlayer.stop();
+    	if(mediaPlayer != null){
+            mediaPlayer.stop();
+    	}
     }
 
     @Override
