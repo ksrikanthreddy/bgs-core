@@ -32,7 +32,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
             mgr.notify(notifyID, note);	
             
             Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-	    MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), notification);
+	    MediaPlayer mediaPlayer = MediaPlayer.create(context, notification);
             mediaPlayer.start();
     	}
     	catch(Exception e){
