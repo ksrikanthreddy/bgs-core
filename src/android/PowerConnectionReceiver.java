@@ -56,6 +56,11 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         int chargePlug = batteryStatusIntent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
         boolean usbCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_USB;
         boolean acCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_AC;
+        int level = batteryStatusIntent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+	int scale = batteryStatusIntent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
+
+	float batteryPct = level / (float)scale;
+	
         if(usbCharge)
         {
         	batteryStatus = "USB";
@@ -65,7 +70,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         	batteryStatus = "AC Power";
         }
         if(isCharging){
-        	showNotification(context,"Safe Battery Enabled", "Charging");
+        	showNotification(context,"Safe Battery Enabled", "Charging "+Float.toString(batteryPct)+"%");
         }
         else{
         	cancelNotification(context,notifyID);
