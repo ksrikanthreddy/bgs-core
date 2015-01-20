@@ -18,8 +18,7 @@ import android.widget.Toast;
 public class PowerConnectionReceiver extends BroadcastReceiver {
     int notifyID = 11;
     
-    Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
-    MediaPlayer mediaPlayer = MediaPlayer.create(context, notification);
+    
     public void showNotification(Context context, String title, String description){
     	try{
     	final NotificationManager mgr=
@@ -32,12 +31,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
 	        note.setLatestEventInfo(context, title, description, appIntent);
             //After uncomment this line you will see number of notification arrived
             //note.number=2;
-            mgr.notify(notifyID, note);	
-            
-	    if(mediaPlayer.isPlaying()){
-            	mediaPlayer.stop();
-            }
-            mediaPlayer.start();
+            mgr.notify(notifyID, note);
     	}
     	catch(Exception e){
     		Toast toast = Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT);
@@ -60,6 +54,8 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) { 
         
         try{
+        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+        MediaPlayer mediaPlayer = MediaPlayer.create(context, notification);
        	String batteryStatus = "";
        	IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
        	
@@ -86,9 +82,16 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         }
         if(isCharging){
         	showNotification(context,"Safe Battery Enabled", "Charging "+Float.toString(batteryPct * 100)+"%");
+        	if(mediaPlayer.isPlaying()){
+            	    mediaPlayer.stop();
+        	}
+            	mediaPlayer.start();
         }
         else{
         	cancelNotification(context,notifyID);
+        	if(mediaPlayer.isPlaying()){
+            	    mediaPlayer.stop();
+        	}
         }
         if(isFull){
         	showNotification(context,"Safe Battery Enabled", "100% charged. Unplug Charger.");
