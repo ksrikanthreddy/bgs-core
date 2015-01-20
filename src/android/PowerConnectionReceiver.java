@@ -88,6 +88,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         		Toast toast5 = Toast.makeText(context, "is charging NOT PLAYING", Toast.LENGTH_SHORT);
             		toast5.show();
         	}
+        	mediaPlayer.stop();
             	mediaPlayer.start();
         }
         else{
@@ -101,6 +102,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         		Toast toast7 = Toast.makeText(context, "else NOT PLAYING", Toast.LENGTH_SHORT);
             		toast7.show();
         	}
+        	mediaPlayer.stop();
         }
         if(isFull){
         	showNotification(context,"Safe Battery Enabled", "100% charged. Unplug Charger.");
