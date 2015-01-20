@@ -42,6 +42,8 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
     	catch(Exception e){
     		Toast toast = Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT);
             	toast.show();
+            	Toast toast2 = Toast.makeText(context, "show notification exception", Toast.LENGTH_SHORT);
+                toast2.show();
     	}
     }
     
@@ -93,6 +95,8 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         catch(Exception e){
             Toast toast = Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT);
             toast.show();
+            Toast toast1 = Toast.makeText(context, "on receive exception", Toast.LENGTH_SHORT);
+            toast1.show();
         }
     }
 }
