@@ -43,7 +43,8 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) { 
-        
+        Toast toast1 = Toast.makeText(context, "ON RECEIVE", Toast.LENGTH_SHORT);
+            toast1.show();
         try{
        	String batteryStatus = "";
        	IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
