@@ -103,6 +103,10 @@ public class BackgroundServicePluginLogic {
 	public BackgroundServicePluginLogic(Context pContext) {
 		this.mContext = pContext;
 	}
+	
+	public BackgroundServicePluginLogic() {
+		
+	}
 
 	/*
 	 ************************************************************************************************
