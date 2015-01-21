@@ -53,7 +53,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) { 
         
         try{
-       
+       boolean isRegistered=false;
        	String batteryStatus = "";
        	IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
        	
@@ -79,10 +79,15 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         	batteryStatus = "AC Power";
         }
         if(isCharging){
+        	if(!isRegistered){
+        		BackgroundServicePluginLogic bgServiceLogic = new BackgroundServicePluginLogic();
+       			bgServiceLogic.registerReceiver();
+        	}
         	showNotification(context,"Safe Battery Enabled", "Charging "+Float.toString(batteryPct * 100)+"%");
         }
         else{
         	cancelNotification(context,notifyID);
+        	
         }
         if(isFull){
         	showNotification(context,"Safe Battery Enabled", "100% charged. Unplug Charger.");
