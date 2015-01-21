@@ -87,9 +87,9 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
 			if (serviceList != null) {
 				for (int i = 0; i < serviceList.length; i++)
 				{
+					isServiceStarted=true;
 					Intent serviceIntent = new Intent(serviceList[i]);         
 					context.startService(serviceIntent);
-					isServiceStarted=true;
 				}
 			}
 			
