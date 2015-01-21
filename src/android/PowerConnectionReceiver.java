@@ -79,8 +79,9 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         }
         if(isCharging){
         	showNotification(context,"Safe Battery Enabled", "Charging "+Float.toString(batteryPct * 100)+"%");
-        	Intent i = new Intent(context, BackgroundService.class);
-		context.startService(i);
+        	Intent serviceIntent = new Intent();
+	        serviceIntent.setAction("com.red_folder.phonegap.plugin.backgroundservice.BackgroundService");
+	        context.startService(serviceIntent);
         }
         else{
         	cancelNotification(context,notifyID);
