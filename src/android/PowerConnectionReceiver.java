@@ -79,10 +79,6 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         	batteryStatus = "AC Power";
         }
         if(isCharging){
-        	if(!isRegistered){
-        		BackgroundServicePluginLogic bgServiceLogic = new BackgroundServicePluginLogic();
-       			bgServiceLogic.registerReceiver();
-        	}
         	showNotification(context,"Safe Battery Enabled", "Charging "+Float.toString(batteryPct * 100)+"%");
         }
         else{
