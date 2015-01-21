@@ -111,11 +111,11 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
 			if (serviceList != null) {
 				for (int i = 0; i < serviceList.length; i++)
 				{
+					isServiceStarted=false;
 					Intent serviceIntent = new Intent(serviceList[i]);         
 					context.stopService(serviceIntent);
 					Toast t6 = Toast.makeText(context, "Not Charging - service stopped", Toast.LENGTH_SHORT);
             				t6.show();
-            				isServiceStarted=false;
 				}
 			}
 		
