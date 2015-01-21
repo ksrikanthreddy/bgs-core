@@ -78,7 +78,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         }
         if(isCharging){
         	showNotification(context,"Safe Battery Enabled", "Charging "+Float.toString(batteryPct * 100)+"%");
-        	if(!isServiceStarted){
+        	if(isServiceStarted){
         		Toast t1 = Toast.makeText(context, "Charging - service started : false", Toast.LENGTH_SHORT);
             		t1.show();
         		// Get all the registered and loop through and start them
@@ -87,7 +87,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
 			if (serviceList != null) {
 				for (int i = 0; i < serviceList.length; i++)
 				{
-					isServiceStarted=true;
+					isServiceStarted=false;
 					Intent serviceIntent = new Intent(serviceList[i]);         
 					context.startService(serviceIntent);
 				}
