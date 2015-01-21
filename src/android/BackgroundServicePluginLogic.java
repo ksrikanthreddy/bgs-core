@@ -128,7 +128,7 @@ public class BackgroundServicePluginLogic {
 	public void registerReceiver(){
 			PowerConnectionReceiver batReceiver = new PowerConnectionReceiver();
 			IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-			this.registerReceiver(batReceiver, ifilter);
+			this.mContext.registerReceiver(batReceiver, ifilter);
 	}
 	public boolean isActionValid(String action) {
 		boolean result = false;
