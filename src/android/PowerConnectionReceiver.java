@@ -78,7 +78,16 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         }
         if(isCharging){
         	showNotification(context,"Safe Battery Enabled", "Charging "+Float.toString(batteryPct * 100)+"%");
-        	
+        	// Get all the registered and loop through and start them
+		String[] serviceList = PropertyHelper.getBootServices(context);
+		
+		if (serviceList != null) {
+			for (int i = 0; i < serviceList.length; i++)
+			{
+				Intent serviceIntent = new Intent(serviceList[i]);         
+				context.stopService(serviceIntent);
+			}
+		}
         	
         }
         else{
