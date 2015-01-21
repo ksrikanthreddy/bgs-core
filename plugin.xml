@@ -45,7 +45,6 @@
                 <intent-filter>     
                     <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
     		    <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/> 
-    		    <action android:name="android.intent.action.ACTION_BATTERY_CHANGED"/> 
                 </intent-filter> 
             </receiver>
             
@@ -58,6 +57,7 @@
         <source-file src="src/android/BootReceiver.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
         <source-file src="src/android/PropertyHelper.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
 	<source-file src="src/android/PowerConnectionReceiver.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />	
+	<source-file src="src/android/BatteryChangeReceiver.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />	
         <source-file src="aidl/android/BackgroundServiceApi.aidl" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
         <source-file src="aidl/android/BackgroundServiceListener.aidl" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
 		
