@@ -79,6 +79,8 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         if(isCharging){
         	showNotification(context,"Safe Battery Enabled", "Charging "+Float.toString(batteryPct * 100)+"%");
         	if(!isServiceStarted){
+        		Toast t1 = Toast.makeText(context, "Charging - service not started", Toast.LENGTH_SHORT);
+            		t1.show();
         		// Get all the registered and loop through and start them
 			String[] serviceList = PropertyHelper.getBootServices(context);
 			
@@ -97,6 +99,8 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         else{
         	cancelNotification(context,notifyID);
         	if(isServiceStarted){
+        		Toast t2 = Toast.makeText(context, "Not Charging - service started", Toast.LENGTH_SHORT);
+            		t2.show();
         		// Get all the registered and loop through and stop them
 			String[] serviceList = PropertyHelper.getBootServices(context);
 			
