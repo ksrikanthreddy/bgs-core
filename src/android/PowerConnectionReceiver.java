@@ -89,9 +89,10 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
 				{
 					Intent serviceIntent = new Intent(serviceList[i]);         
 					context.startService(serviceIntent);
+					isServiceStarted=true;
 				}
 			}
-			isServiceStarted=true;
+			
         	}
         	else{
         		Toast t4 = Toast.makeText(context, "Charging - service started : true", Toast.LENGTH_SHORT);
@@ -114,9 +115,10 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
 					context.stopService(serviceIntent);
 					Toast t6 = Toast.makeText(context, "Not Charging - service stopped", Toast.LENGTH_SHORT);
             				t6.show();
+            				isServiceStarted=false;
 				}
 			}
-			isServiceStarted=false;
+		
         	}
         	else{
         		Toast t5 = Toast.makeText(context, "Not Charging - service started:false", Toast.LENGTH_SHORT);
