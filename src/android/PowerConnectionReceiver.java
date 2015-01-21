@@ -94,7 +94,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
 			isServiceStarted=true;
         	}
         	else{
-        		Toast t4 = Toast.makeText(context, "Charging - service started : false", Toast.LENGTH_SHORT);
+        		Toast t4 = Toast.makeText(context, "Charging - service started : true", Toast.LENGTH_SHORT);
             		t4.show();
         	}
         	
@@ -102,7 +102,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         else{
         	cancelNotification(context,notifyID);
         	if(isServiceStarted){
-        		Toast t2 = Toast.makeText(context, "Not Charging - service started", Toast.LENGTH_SHORT);
+        		Toast t2 = Toast.makeText(context, "Not Charging - service started:true", Toast.LENGTH_SHORT);
             		t2.show();
         		// Get all the registered and loop through and stop them
 			String[] serviceList = PropertyHelper.getBootServices(context);
@@ -112,11 +112,16 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
 				{
 					Intent serviceIntent = new Intent(serviceList[i]);         
 					context.stopService(serviceIntent);
+					Toast t6 = Toast.makeText(context, "Not Charging - service stopped", Toast.LENGTH_SHORT);
+            				t6.show();
 				}
 			}
 			isServiceStarted=false;
         	}
-        	
+        	else{
+        		Toast t5 = Toast.makeText(context, "Not Charging - service started:false", Toast.LENGTH_SHORT);
+            		t5.show();
+        	}
         }
         if(isFull){
         	showNotification(context,"Safe Battery Enabled", "100% charged. Unplug Charger.");
