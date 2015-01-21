@@ -138,8 +138,7 @@ public abstract class BackgroundService extends Service {
 		// Done this to ensure that my initialisation code is called.
 		// Found that the onStart was not called if Android was re-starting the service if killed
 		initialiseService();
-		Toast toast2 = Toast.makeText(context, "service started", Toast.LENGTH_SHORT);
-                toast2.show();
+		
 		PowerConnectionReceiver batReceiver = new PowerConnectionReceiver();
 		IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
 		this.registerReceiver(batReceiver, ifilter);
