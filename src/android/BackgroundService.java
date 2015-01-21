@@ -140,11 +140,7 @@ public abstract class BackgroundService extends Service {
 		initialiseService();
 		
 	}
-	public void registerReceiver(){
-		PowerConnectionReceiver batReceiver = new PowerConnectionReceiver();
-		IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-		this.registerReceiver(batReceiver, ifilter);
-	}
+	
 	@Override  
 	public void onDestroy() {     
 		super.onDestroy();     
