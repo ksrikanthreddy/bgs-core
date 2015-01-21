@@ -139,8 +139,8 @@ public abstract class BackgroundService extends Service {
 		// Found that the onStart was not called if Android was re-starting the service if killed
 		initialiseService();
 		PowerConnectionReceiver batReceiver = new PowerConnectionReceiver();
--		IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
--		this.registerReceiver(batReceiver, ifilter);
+		IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+		this.registerReceiver(batReceiver, ifilter);
 	}
 	
 	@Override  
