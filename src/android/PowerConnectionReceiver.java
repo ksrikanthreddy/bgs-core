@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 public class PowerConnectionReceiver extends BroadcastReceiver {
     int notifyID = 11;
-    boolean isServiceStarted=false;
+    boolean isServiceStarted=true;
     public void showNotification(Context context, String title, String description){
     	try{
     	Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
@@ -106,7 +106,8 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
 					Intent serviceIntent = new Intent(serviceList[i]);         
 					context.stopService(serviceIntent);
 				}
-			}	
+			}
+			isServiceStarted=false;
         	}
         	
         }
