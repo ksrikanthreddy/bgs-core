@@ -103,10 +103,6 @@ public class BackgroundServicePluginLogic {
 	public BackgroundServicePluginLogic(Context pContext) {
 		this.mContext = pContext;
 	}
-	
-	public BackgroundServicePluginLogic() {
-		
-	}
 
 	/*
 	 ************************************************************************************************
@@ -125,11 +121,7 @@ public class BackgroundServicePluginLogic {
 	//	else
 	//		return true;
 	//}
-	public void registerReceiver(){
-			PowerConnectionReceiver batReceiver = new PowerConnectionReceiver();
-			IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-			this.mContext.registerReceiver(batReceiver, ifilter);
-	}
+	
 	public boolean isActionValid(String action) {
 		boolean result = false;
 
