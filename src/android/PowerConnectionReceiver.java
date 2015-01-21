@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 public class PowerConnectionReceiver extends BroadcastReceiver {
     int notifyID = 11;
-    boolean isRegistered=false;
     
     public void showNotification(Context context, String title, String description){
     	try{
@@ -79,12 +78,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         }
         if(isCharging){
         	showNotification(context,"Safe Battery Enabled", "Charging "+Float.toString(batteryPct * 100)+"%");
-        	if(!isRegistered){
-        		Intent serviceIntent = new Intent();
-	        	serviceIntent.setAction("com.red_folder.phonegap.plugin.backgroundservice.BackgroundService");
-	        	context.startService(serviceIntent);
-	        	isRegistered = true;
-        	}
+        	
         	
         }
         else{
