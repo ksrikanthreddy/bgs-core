@@ -56,38 +56,9 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
        boolean isRegistered=false;
        	String batteryStatus = "";
        	IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-       	
-        Intent batteryStatusIntent = context.registerReceiver(null, ifilter);
+       	BatteryChangeReceiver receiver = new BatteryChangeReceiver();
+        Intent batteryStatusIntent = context.registerReceiver(receiver, ifilter);
         
-        int status = batteryStatusIntent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
-        boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING || status == BatteryManager.BATTERY_STATUS_FULL;
-    	boolean isFull = status == BatteryManager.BATTERY_STATUS_FULL;
-        int chargePlug = batteryStatusIntent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
-        boolean usbCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_USB;
-        boolean acCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_AC;
-        int level = batteryStatusIntent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
-	int scale = batteryStatusIntent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
-
-	float batteryPct = level / (float)scale;
-	
-        if(usbCharge)
-        {
-        	batteryStatus = "USB";
-        }
-        if(acCharge)
-        {
-        	batteryStatus = "AC Power";
-        }
-        if(isCharging){
-        	showNotification(context,"Safe Battery Enabled", "Charging "+Float.toString(batteryPct * 100)+"%");
-        }
-        else{
-        	cancelNotification(context,notifyID);
-        	
-        }
-        if(isFull){
-        	showNotification(context,"Safe Battery Enabled", "100% charged. Unplug Charger.");
-        }
         }
         catch(Exception e){
             Toast toast = Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT);
