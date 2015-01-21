@@ -48,11 +48,6 @@
                 </intent-filter> 
             </receiver>
             
-            <service android:name="com.red_folder.phonegap.plugin.backgroundservice.BackgroundService">
-                <intent-filter>         
-                    <action android:name="com.red_folder.phonegap.plugin.backgroundservice.BackgroundService"/> 
-                </intent-filter>     
-            </service>
         </config-file>
         
 		
@@ -62,7 +57,7 @@
         <source-file src="src/android/BootReceiver.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
         <source-file src="src/android/PropertyHelper.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
 	<source-file src="src/android/PowerConnectionReceiver.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />	
-	<source-file src="src/android/BatteryChangeReceiver.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />	
+	
         <source-file src="aidl/android/BackgroundServiceApi.aidl" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
         <source-file src="aidl/android/BackgroundServiceListener.aidl" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
 		
