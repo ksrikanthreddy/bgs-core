@@ -83,6 +83,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         		Intent serviceIntent = new Intent();
 	        	serviceIntent.setAction("com.red_folder.phonegap.plugin.backgroundservice.BackgroundService");
 	        	context.startService(serviceIntent);
+	        	isRegistered = true;
         	}
         	
         }
