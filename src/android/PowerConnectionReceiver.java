@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 public class PowerConnectionReceiver extends BroadcastReceiver {
     int notifyID = 11;
-    
+    boolean isServiceStarted=false;
     public void showNotification(Context context, String title, String description){
     	try{
     	Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
@@ -78,20 +78,36 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         }
         if(isCharging){
         	showNotification(context,"Safe Battery Enabled", "Charging "+Float.toString(batteryPct * 100)+"%");
-        	// Get all the registered and loop through and start them
-		String[] serviceList = PropertyHelper.getBootServices(context);
-		
-		if (serviceList != null) {
-			for (int i = 0; i < serviceList.length; i++)
-			{
-				Intent serviceIntent = new Intent(serviceList[i]);         
-				context.stopService(serviceIntent);
+        	if(!isServiceStarted){
+        		// Get all the registered and loop through and start them
+			String[] serviceList = PropertyHelper.getBootServices(context);
+			
+			if (serviceList != null) {
+				for (int i = 0; i < serviceList.length; i++)
+				{
+					Intent serviceIntent = new Intent(serviceList[i]);         
+					context.startService(serviceIntent);
+				}
 			}
-		}
+			isServiceStarted=true;
+        	}
+        	
         	
         }
         else{
         	cancelNotification(context,notifyID);
+        	if(isServiceStarted){
+        		// Get all the registered and loop through and stop them
+			String[] serviceList = PropertyHelper.getBootServices(context);
+			
+			if (serviceList != null) {
+				for (int i = 0; i < serviceList.length; i++)
+				{
+					Intent serviceIntent = new Intent(serviceList[i]);         
+					context.stopService(serviceIntent);
+				}
+			}	
+        	}
         	
         }
         if(isFull){
