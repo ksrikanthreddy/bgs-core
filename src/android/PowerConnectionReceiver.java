@@ -20,7 +20,6 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
     boolean isServiceStarted=true;
     public void showNotification(Context context, String title, String description){
     	try{
-    		super.setIntegerProperty("icon", R.drawable.icon);
     	Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
     	final NotificationManager mgr=
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
