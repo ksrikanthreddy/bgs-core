@@ -23,7 +23,9 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
     public void showNotification(Context context, String title, String description){
     	try{
     	myAudioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
-    	myAudioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+    	//myAudioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+    	//myAudioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+    	//myAudioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
     	Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
     	final NotificationManager mgr=
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
