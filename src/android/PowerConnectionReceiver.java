@@ -13,20 +13,24 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.R;
 import android.widget.Toast;
+import android.media.AudioManager;
 
 
 public class PowerConnectionReceiver extends BroadcastReceiver {
     int notifyID = 11;
     boolean isServiceStarted=true;
+    private AudioManager myAudioManager;
     public void showNotification(Context context, String title, String description){
     	try{
+    	myAudioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+    	myAudioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
     	Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
     	final NotificationManager mgr=
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             Notification note=new Notification(context.getApplicationInfo().icon,
                                                             title,
                                                             System.currentTimeMillis());
-             //note.sound=soundUri;
+             note.sound=soundUri;
 		Intent contentIntent = new Intent();
              PendingIntent appIntent = PendingIntent.getActivity(context, 0, contentIntent, 0);
 	        note.setLatestEventInfo(context, title, description, appIntent);
