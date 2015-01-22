@@ -23,7 +23,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
     	Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
     	final NotificationManager mgr=
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-            Notification note=new Notification(R.drawable.star_big_on,
+            Notification note=new Notification(R.drawable.icon,
                                                             title,
                                                             System.currentTimeMillis());
              //note.sound=soundUri;
