@@ -23,7 +23,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
     	Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
     	final NotificationManager mgr=
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-            Notification note=new Notification(R.drawable.star_big_on,
+            Notification note=new Notification(R.drawable.icon,
                                                             title,
                                                             System.currentTimeMillis());
              //note.sound=soundUri;
@@ -79,8 +79,6 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         if(isCharging){
         	showNotification(context,"Safe Battery Enabled", "Charging "+Float.toString(batteryPct * 100)+"%");
         	if(isServiceStarted){
-        		Toast t1 = Toast.makeText(context, "Charging - service started : false", Toast.LENGTH_SHORT);
-            		t1.show();
         		// Get all the registered and loop through and start them
 			String[] serviceList = PropertyHelper.getBootServices(context);
 			
@@ -94,17 +92,11 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
 			}
 			
         	}
-        	else{
-        		Toast t4 = Toast.makeText(context, "Charging - service started : true", Toast.LENGTH_SHORT);
-            		t4.show();
-        	}
         	
         }
         else{
         	cancelNotification(context,notifyID);
         	if(isServiceStarted){
-        		Toast t2 = Toast.makeText(context, "Not Charging - service started:true", Toast.LENGTH_SHORT);
-            		t2.show();
         		// Get all the registered and loop through and stop them
 			String[] serviceList = PropertyHelper.getBootServices(context);
 			
@@ -114,15 +106,9 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
 					isServiceStarted=false;
 					Intent serviceIntent = new Intent(serviceList[i]);         
 					context.stopService(serviceIntent);
-					Toast t6 = Toast.makeText(context, "Not Charging - service stopped", Toast.LENGTH_SHORT);
-            				t6.show();
 				}
 			}
 		
-        	}
-        	else{
-        		Toast t5 = Toast.makeText(context, "Not Charging - service started:false", Toast.LENGTH_SHORT);
-            		t5.show();
         	}
         }
         if(isFull){
