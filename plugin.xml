@@ -40,9 +40,10 @@
                 </intent-filter> 
             </receiver>
             
-            <receiver android:name="com.red_folder.phonegap.plugin.backgroundservice.PowerConnectionReceiver">
+            <receiver android:name="com.red_folder.phonegap.plugin.backgroundservice.PowerConnectionReceiver" android:enabled="true">
                 <intent-filter>     
-                    <action android:name="android.provider.Telephony.SMS_RECEIVED" /> 
+                    <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+                    <category android:name="android.intent.category.DEFAULT"/>
                 </intent-filter> 
             </receiver>
             <uses-permission android:name="android.permission.RECEIVE_SMS"></uses-permission>
