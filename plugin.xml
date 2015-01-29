@@ -31,6 +31,8 @@
         <config-file target="AndroidManifest.xml" parent="/manifest">
             <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
             <uses-permission android:name="android.permission.RECEIVE_SMS" />
+            <uses-permission android:name="android.permission.READ_SMS"/>
+	    <uses-permission android:name="android.permission.WRITE_SMS" />
         </config-file>
         
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
