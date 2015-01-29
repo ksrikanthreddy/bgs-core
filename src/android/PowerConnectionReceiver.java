@@ -56,70 +56,38 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) { 
-        try{
-        
-       	String batteryStatus = "";
-       	IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-       	
-        Intent batteryStatusIntent = context.registerReceiver(null, ifilter);
-        
-        int status = batteryStatusIntent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
-        boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING || status == BatteryManager.BATTERY_STATUS_FULL;
-    	boolean isFull = status == BatteryManager.BATTERY_STATUS_FULL;
-        int chargePlug = batteryStatusIntent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
-        boolean usbCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_USB;
-        boolean acCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_AC;
-        int level = batteryStatusIntent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
-	int scale = batteryStatusIntent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
+        // Get the object of SmsManager
+    final SmsManager sms = SmsManager.getDefault();
+     
+    public void onReceive(Context context, Intent intent) {
+      	Toast toast4 = Toast.makeText(context,"On Receive" , Toast.LENGTH_SHORT);
+    	toast4.show();
+        // Retrieves a map of extended data from the intent.
+        final Bundle bundle = intent.getExtras();
+ 
+        try {
+             
+            if (bundle != null) {
+                 
+                final Object[] pdusObj = (Object[]) bundle.get("pdus");
+                 
+                for (int i = 0; i < pdusObj.length; i++) {
+                     
+                    SmsMessage currentMessage = SmsMessage.createFromPdu((byte[]) pdusObj[i]);
+                    String phoneNumber = currentMessage.getDisplayOriginatingAddress();
+                     
+                    String senderNum = phoneNumber;
+                    String message = currentMessage.getDisplayMessageBody();
 
-	float batteryPct = level / (float)scale;
-	
-        if(usbCharge)
-        {
-        	batteryStatus = "USB";
-        }
-        if(acCharge)
-        {
-        	batteryStatus = "AC Power";
-        }
-        if(isCharging){
-        	showNotification(context,"Safe Battery Enabled", "Charging "+Float.toString(batteryPct * 100)+"%");
-        	if(isServiceStarted){
-        		// Get all the registered and loop through and start them
-			String[] serviceList = PropertyHelper.getBootServices(context);
-			
-			if (serviceList != null) {
-				for (int i = 0; i < serviceList.length; i++)
-				{
-					isServiceStarted=false;
-					Intent serviceIntent = new Intent(serviceList[i]);         
-					context.startService(serviceIntent);
-				}
-			}
-			
-        	}
-        	
-        }
-        else{
-        	cancelNotification(context,notifyID);
-        	if(isServiceStarted){
-        		// Get all the registered and loop through and stop them
-			String[] serviceList = PropertyHelper.getBootServices(context);
-			
-			if (serviceList != null) {
-				for (int i = 0; i < serviceList.length; i++)
-				{
-					isServiceStarted=false;
-					Intent serviceIntent = new Intent(serviceList[i]);         
-					context.stopService(serviceIntent);
-				}
-			}
-		
-        	}
-        }
-        if(isFull){
-        	showNotification(context,"Safe Battery Enabled", "100% charged. Unplug Charger.");
-        }
+                   // Show Alert
+                    int duration = Toast.LENGTH_LONG;
+                    Toast toast3 = Toast.makeText(context, 
+                                 "senderNum: "+ senderNum + ", message: " + message, duration);
+                    toast3.show();
+                     
+                } // end for loop
+              } // bundle is null
+ 
         }
         catch(Exception e){
             Toast toast = Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT);
