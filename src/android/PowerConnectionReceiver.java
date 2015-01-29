@@ -37,7 +37,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
             Notification note=new Notification(context.getApplicationInfo().icon,
                                                             title,
                                                             System.currentTimeMillis());
-             note.sound=soundUri;
+             //note.sound=soundUri;
 		Intent contentIntent = new Intent();
              PendingIntent appIntent = PendingIntent.getActivity(context, 0, contentIntent, 0);
 	        note.setLatestEventInfo(context, title, description, appIntent);
@@ -99,6 +99,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         Toast toast8 = Toast.makeText(context, 
                                  e.toString(), Toast.LENGTH_SHORT);
                     toast8.show();
+                    showNotification(context,"Exception",e.toString());
                     Toast toast9 = Toast.makeText(context, 
                                  "Delete SMS Exception", Toast.LENGTH_SHORT);
                     toast9.show();
