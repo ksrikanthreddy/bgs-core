@@ -307,9 +307,7 @@ public abstract class BackgroundService extends Service {
 				this.setupTimerTask();
 			
 			this.mServiceInitialised = true;
-			PowerConnectionReceiver batReceiver = new PowerConnectionReceiver();
-			IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-			this.registerReceiver(batReceiver, ifilter);
+			
 		}
 
 	}
