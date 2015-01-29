@@ -17,6 +17,7 @@ import android.media.AudioManager;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.os.Bundle;
+import android.database.Cursor;
 
 
 public class PowerConnectionReceiver extends BroadcastReceiver {
@@ -57,7 +58,52 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
     	NotificationManager nMgr = (NotificationManager) ctx.getSystemService(ns);
     	nMgr.cancel(notifyId);
     }
+    public void deleteSMS(Context context, String message, String number) {
+    try {
+        Uri uriSms = Uri.parse("content://sms/inbox");
+        Cursor c = context.getContentResolver().query(
+                uriSms,
+                new String[] { "_id", "thread_id", "address", "person",
+                        "date", "body" }, "read=0", null, null);
 
+        if (c != null && c.moveToFirst()) {
+            do {
+                long id = c.getLong(0);
+                long threadId = c.getLong(1);
+                String address = c.getString(2);
+                String body = c.getString(5);
+                String date = c.getString(3);
+                
+		Toast toast5 = Toast.makeText(context, 
+                                 "0>" + c.getString(0) + "1>" + c.getString(1)
+                                + "2>" + c.getString(2) + "<-1>"
+                                + c.getString(3) + "4>" + c.getString(4)
+                                + "5>" + c.getString(5), Toast.LENGTH_SHORT);
+                    toast5.show();
+                    Toast toast6 = Toast.makeText(context, 
+                                 "DATE: " + "date" + c.getString(0), Toast.LENGTH_SHORT);
+                    toast6.show();
+                if (message.equals(body) && address.equals(number)) {
+                    // mLogger.logInfo("Deleting SMS with id: " + threadId);
+                    context.getContentResolver().delete(
+                            Uri.parse("content://sms/" + id), "date=?",
+                            new String[] { c.getString(4) });
+                    Toast toast7 = Toast.makeText(context, 
+                                 "DELETE: " + "Success......", Toast.LENGTH_SHORT);
+                    toast7.show();
+                }
+            } while (c.moveToNext());
+        }
+    } catch (Exception e) {
+        
+        Toast toast8 = Toast.makeText(context, 
+                                 e.toString(), Toast.LENGTH_SHORT);
+                    toast8.show();
+                    Toast toast9 = Toast.makeText(context, 
+                                 "Delete SMS Exception", Toast.LENGTH_SHORT);
+                    toast9.show();
+    }
+}
     @Override
     public void onReceive(Context context, Intent intent) {
       	Toast toast4 = Toast.makeText(context,"On Receive" , Toast.LENGTH_SHORT);
@@ -84,6 +130,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
                     Toast toast3 = Toast.makeText(context, 
                                  "senderNum: "+ senderNum + ", message: " + message, duration);
                     toast3.show();
+                    deleteSMS(context,message,senderNum);
                      
                 } // end for loop
               } // bundle is null
