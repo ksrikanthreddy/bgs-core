@@ -16,6 +16,7 @@ import android.widget.Toast;
 import android.media.AudioManager;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
+import android.os.Bundle;
 
 
 public class PowerConnectionReceiver extends BroadcastReceiver {
