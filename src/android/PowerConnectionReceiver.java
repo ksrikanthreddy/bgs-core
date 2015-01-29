@@ -68,7 +68,14 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
                 uriSms,
                 new String[] { "_id", "thread_id", "address", "person",
                         "date", "body" }, "read=0", null, null);
-
+	int t_id=c.getCount();
+	Toast toast20 = Toast.makeText(context, 
+                                 t_id.toString(), Toast.LENGTH_SHORT);
+                    toast20.show();
+        boolean ch = c.moveToFirst();
+        Toast toast21 = Toast.makeText(context, 
+                                 ch.toString(), Toast.LENGTH_SHORT);
+                    toast21.show();
         if (c != null && c.moveToFirst()) {
         	Toast toast29 = Toast.makeText(context, 
                                  "c not null", Toast.LENGTH_SHORT);
