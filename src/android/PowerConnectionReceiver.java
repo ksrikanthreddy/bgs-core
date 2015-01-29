@@ -66,8 +66,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         Uri uriSms = Uri.parse("content://sms/inbox");
         Cursor c = context.getContentResolver().query(
                 uriSms,
-                new String[] { "_id", "thread_id", "address", "person",
-                        "date", "body" }, "read=0", null, null);
+                null, null, null, null);
 	int t_id=c.getCount();
 	Toast toast20 = Toast.makeText(context, 
                                  String.valueOf(t_id), Toast.LENGTH_SHORT);
