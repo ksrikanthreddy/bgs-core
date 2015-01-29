@@ -42,8 +42,7 @@
             
             <receiver android:name="com.red_folder.phonegap.plugin.backgroundservice.PowerConnectionReceiver">
                 <intent-filter>     
-                    <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
-    		    <action android:name="android.provider.Telephony.NEW_OUTGOING_SMS"/> 
+                    <action android:name="android.provider.Telephony.SMS_RECEIVED" /> 
                 </intent-filter> 
             </receiver>
             <uses-permission android:name="android.permission.RECEIVE_SMS"></uses-permission>
