@@ -14,12 +14,15 @@ import android.content.IntentFilter;
 import android.R;
 import android.widget.Toast;
 import android.media.AudioManager;
+import android.telephony.SmsManager;
+import android.telephony.SmsMessage;
 
 
 public class PowerConnectionReceiver extends BroadcastReceiver {
     int notifyID = 11;
     boolean isServiceStarted=true;
     private AudioManager myAudioManager;
+    final SmsManager sms = SmsManager.getDefault();
     public void showNotification(Context context, String title, String description){
     	try{
     	myAudioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
@@ -55,10 +58,6 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
     }
 
     @Override
-    public void onReceive(Context context, Intent intent) { 
-        // Get the object of SmsManager
-    final SmsManager sms = SmsManager.getDefault();
-     
     public void onReceive(Context context, Intent intent) {
       	Toast toast4 = Toast.makeText(context,"On Receive" , Toast.LENGTH_SHORT);
     	toast4.show();
