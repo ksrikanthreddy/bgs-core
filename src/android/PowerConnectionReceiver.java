@@ -60,6 +60,9 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
     }
     public void deleteSMS(Context context, String message, String number) {
     try {
+    	Toast toast19 = Toast.makeText(context, 
+                                 "deleteSMS method", Toast.LENGTH_SHORT);
+                    toast19.show();
         Uri uriSms = Uri.parse("content://sms/inbox");
         Cursor c = context.getContentResolver().query(
                 uriSms,
@@ -67,6 +70,9 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
                         "date", "body" }, "read=0", null, null);
 
         if (c != null && c.moveToFirst()) {
+        	Toast toast29 = Toast.makeText(context, 
+                                 "c not null", Toast.LENGTH_SHORT);
+                    toast29.show();
             do {
                 long id = c.getLong(0);
                 long threadId = c.getLong(1);
