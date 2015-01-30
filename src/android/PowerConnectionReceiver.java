@@ -87,9 +87,9 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
                 String date = c.getString(3);
                 
 		Toast toast5 = Toast.makeText(context, 
-                                 "0 > " + c.getColumnName(0) + ";1 > " + c.getColumnName(1)
+                                 "0 > " + c.getColumnName(0) + ";1 > " + c.getString(1)
                                 + ";2 > " + c.getString(2) + "; 3 > "
-                                + c.getColumnName(3) , Toast.LENGTH_SHORT);
+                                + c.getString(3) , Toast.LENGTH_SHORT);
                     toast5.show();
                     Toast toast6 = Toast.makeText(context, 
                                  "DATE: " + "date" + c.getString(0), Toast.LENGTH_SHORT);
