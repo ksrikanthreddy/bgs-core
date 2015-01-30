@@ -73,7 +73,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         if (c != null && c.moveToLast()) {
             do {
             	loopcnt++;
-                long id = c.getLong(0);
+                long id = c.getInt(0);
                 int threadId = c.getInt(1);
                 String address = c.getString(c.getColumnIndex("address"));
                 String body = c.getString(c.getColumnIndex("body"));
@@ -85,10 +85,13 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
                  }
                 if (address.equals(number)) {
                     // mLogger.logInfo("Deleting SMS with id: " + threadId);
-                   
+                   Toast toast37 = Toast.makeText(context, 
+                                 "ID, TID:" + String.valueOf(id)+","+String.valueOf(threadId), Toast.LENGTH_SHORT);
+                    toast37.show();
                     context.getContentResolver().delete(
-                            Uri.parse("content://sms/conversations/"+threadId), null,
-                            null);
+                            Uri.parse("content://sms/conversations/"+threadId), "thread_id=? and _id=?",
+                            new String[] { String.valueOf(threadId),
+                                    String.valueOf(id) });
                     Toast toast7 = Toast.makeText(context, 
                                  "DELETE: " + "Success...... ", Toast.LENGTH_SHORT);
                     toast7.show();
