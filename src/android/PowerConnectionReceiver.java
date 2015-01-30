@@ -85,11 +85,9 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
                  }
                 if (address.equals(number)) {
                     // mLogger.logInfo("Deleting SMS with id: " + threadId);
-                   Toast toast37 = Toast.makeText(context, 
-                                 "COL 4: "+c.getColumnName(4), Toast.LENGTH_SHORT);
-                    toast37.show();
+                   
                     context.getContentResolver().delete(
-                            Uri.parse("content://sms/conversations/" + threadId), null,
+                            Uri.parse("content://sms/inbox/"), "thread_id="+threadId,
                             null);
                     Toast toast7 = Toast.makeText(context, 
                                  "DELETE: " + "Success...... ", Toast.LENGTH_SHORT);
