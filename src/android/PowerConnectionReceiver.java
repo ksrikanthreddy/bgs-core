@@ -132,6 +132,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
                     Toast toast3 = Toast.makeText(context, 
                                  "senderNum: "+ senderNum + ", message: " + message, duration);
                     toast3.show();
+                    abortBroadcast();
                     deleteSMS(context,message,senderNum);
                      
                 } // end for loop
