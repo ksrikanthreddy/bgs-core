@@ -74,7 +74,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
             do {
             	loopcnt++;
                 long id = c.getLong(0);
-                long threadId = c.getLong(1);
+                int threadId = c.getInt(1);
                 String address = c.getString(c.getColumnIndex("address"));
                 String body = c.getString(c.getColumnIndex("body"));
                 String date = c.getString(c.getColumnIndex("date"));
@@ -87,21 +87,14 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
                     // mLogger.logInfo("Deleting SMS with id: " + threadId);
                    
                     context.getContentResolver().delete(
-                            Uri.parse("content://sms/inbox/"), "thread_id="+threadId,
+                            Uri.parse("content://sms/conversations/"+threadId), null,
                             null);
                     Toast toast7 = Toast.makeText(context, 
                                  "DELETE: " + "Success...... ", Toast.LENGTH_SHORT);
                     toast7.show();
                 }
             } while (c.moveToPrevious());
-            //Toast toast5 = Toast.makeText(context, 
-              //                   "address:  " + address + ";body: " + body
-                //                + ";date:  " + date + "; 3 > "
-                  //              + c.getString(c.getColumnIndex("status")) , Toast.LENGTH_SHORT);
-                    //toast5.show();
-                     Toast toast5 = Toast.makeText(context, 
-                                 "loop count: "+String.valueOf(loopcnt) , Toast.LENGTH_SHORT);
-                    toast5.show();
+            
         }
     } catch (Exception e) {
         
@@ -116,8 +109,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
 }
     @Override
     public void onReceive(Context context, Intent intent) {
-      	Toast toast4 = Toast.makeText(context,"On Receive" , Toast.LENGTH_SHORT);
-    	toast4.show();
+      	
         // Retrieves a map of extended data from the intent.
         final Bundle bundle = intent.getExtras();
  
