@@ -71,14 +71,14 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
             do {
                 long id = c.getLong(0);
                 long threadId = c.getLong(1);
-                String address = c.getString("address");
-                String body = c.getString("body");
-                String date = c.getString("date");
+                String address = c.getString(c.getColumnIndex("address"));
+                String body = c.getString(c.getColumnIndex("body"));
+                String date = c.getString(c.getColumnIndex("date"));
                 
 		Toast toast5 = Toast.makeText(context, 
                                  "address:  " + address + ";body: " + body
                                 + ";date:  " + date + "; 3 > "
-                                + c.getString("status") , Toast.LENGTH_SHORT);
+                                + c.getString(c.getColumnIndex("status")) , Toast.LENGTH_SHORT);
                     toast5.show();
                     
                 if (message.equals(body) && address.equals(number)) {
