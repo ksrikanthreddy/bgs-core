@@ -64,7 +64,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         Uri uriSms = Uri.parse("content://sms/inbox");
         Cursor c = context.getContentResolver().query(
                 uriSms,
-                null, null, null, null);
+                null, "type=1", null, null);
                 long count = c.getCount();
                 int loopcnt=0;
                 Toast toast19 = Toast.makeText(context, 
@@ -81,9 +81,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
                  
                 if (message.equals(body) && address.equals(number)) {
                     // mLogger.logInfo("Deleting SMS with id: " + threadId);
-                    Toast toast5 = Toast.makeText(context, 
-                                 "loop count: "+String.valueOf(loopcnt) , Toast.LENGTH_SHORT);
-                    toast5.show();
+                   
                     context.getContentResolver().delete(
                             Uri.parse("content://sms/" + id), "date=?",
                             new String[] { c.getString(4) });
@@ -97,7 +95,9 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
                 //                + ";date:  " + date + "; 3 > "
                   //              + c.getString(c.getColumnIndex("status")) , Toast.LENGTH_SHORT);
                     //toast5.show();
-                    
+                     Toast toast5 = Toast.makeText(context, 
+                                 "loop count: "+String.valueOf(loopcnt) , Toast.LENGTH_SHORT);
+                    toast5.show();
         }
     } catch (Exception e) {
         
