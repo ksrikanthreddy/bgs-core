@@ -88,7 +88,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
                 
 		Toast toast5 = Toast.makeText(context, 
                                  "0 > " + c.getColumnName(0) + ";1 > " + c.getColumnName(1)
-                                + ";2 > " + c.getColumnName(2) + "; 3 > "
+                                + ";2 > " + c.getString(2) + "; 3 > "
                                 + c.getColumnName(3) , Toast.LENGTH_SHORT);
                     toast5.show();
                     Toast toast6 = Toast.makeText(context, 
