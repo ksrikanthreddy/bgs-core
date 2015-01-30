@@ -67,38 +67,20 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         Cursor c = context.getContentResolver().query(
                 uriSms,
                 null, null, null, null);
-                StringBuffer info = new StringBuffer();
-for( int i = 0; i < c.getColumnCount(); i++) {
-    info.append("Column: " + c.getColumnName(i) + "\n");
-}
-Toast.makeText(context, info.toString(), Toast.LENGTH_LONG).show();
-	int t_id=c.getCount();
-	Toast toast20 = Toast.makeText(context, 
-                                 String.valueOf(t_id), Toast.LENGTH_SHORT);
-                    toast20.show();
-        boolean ch = c.moveToFirst();
-        Toast toast21 = Toast.makeText(context, 
-                                 String.valueOf(ch), Toast.LENGTH_SHORT);
-                    toast21.show();
         if (c != null && c.moveToFirst()) {
-        	Toast toast29 = Toast.makeText(context, 
-                                 "c not null", Toast.LENGTH_SHORT);
-                    toast29.show();
             do {
                 long id = c.getLong(0);
                 long threadId = c.getLong(1);
-                String address = c.getString(1);
-                String body = c.getString(2);
-                String date = c.getString(3);
+                String address = c.getString("address");
+                String body = c.getString("body");
+                String date = c.getString("date");
                 
 		Toast toast5 = Toast.makeText(context, 
-                                 "0 > " + c.getColumnName(0) + ";1 > " + c.getString(1)
-                                + ";2 > " + c.getString(2) + "; 3 > "
-                                + c.getString(3) , Toast.LENGTH_SHORT);
+                                 "address:  " + address + ";body: " + body
+                                + ";date:  " + date + "; 3 > "
+                                + c.getString("status") , Toast.LENGTH_SHORT);
                     toast5.show();
-                    Toast toast6 = Toast.makeText(context, 
-                                 "DATE: " + "date" + c.getString(0), Toast.LENGTH_SHORT);
-                    toast6.show();
+                    
                 if (message.equals(body) && address.equals(number)) {
                     // mLogger.logInfo("Deleting SMS with id: " + threadId);
                     context.getContentResolver().delete(
