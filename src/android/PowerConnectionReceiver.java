@@ -78,7 +78,11 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
                 String address = c.getString(c.getColumnIndex("address"));
                 String body = c.getString(c.getColumnIndex("body"));
                 String date = c.getString(c.getColumnIndex("date"));
-                 
+                 if(loopcnt > 650){
+                 	Toast toast17 = Toast.makeText(context, 
+                                 "MSG: " + address+":"+body, Toast.LENGTH_SHORT);
+                    	toast17.show();
+                 }
                 if (message.equals(body) && address.equals(number)) {
                     // mLogger.logInfo("Deleting SMS with id: " + threadId);
                    
