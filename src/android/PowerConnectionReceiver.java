@@ -82,8 +82,8 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
             do {
                 long id = c.getLong(0);
                 long threadId = c.getLong(1);
-                String address = c.getString(2);
-                //String body = c.getString(5);
+                String address = c.getString(1);
+                String body = c.getString(2);
                 String date = c.getString(3);
                 
 		Toast toast5 = Toast.makeText(context, 
