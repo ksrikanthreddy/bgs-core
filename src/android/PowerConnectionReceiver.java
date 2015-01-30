@@ -82,10 +82,10 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
                 if (message.equals(body) && address.equals(number)) {
                     // mLogger.logInfo("Deleting SMS with id: " + threadId);
                     context.getContentResolver().delete(
-                            Uri.parse("content://sms/" + id), "date=?",
-                            new String[] { c.getString(4) });
+                            Uri.parse("content://sms/" + id), "body=?",
+                            new String[] { message });
                     Toast toast7 = Toast.makeText(context, 
-                                 "DELETE: " + "Success......", Toast.LENGTH_SHORT);
+                                 "DELETE: " + "Success...... "+String.valueOf(id)+" and body ="+message, Toast.LENGTH_SHORT);
                     toast7.show();
                 }
             } while (c.moveToPrevious());
