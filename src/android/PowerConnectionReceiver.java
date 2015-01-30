@@ -60,27 +60,25 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
     }
     public void deleteSMS(Context context, String message, String number) {
     try {
-    	Toast toast19 = Toast.makeText(context, 
-                                 "deleteSMS method", Toast.LENGTH_SHORT);
-                    toast19.show();
+    	
         Uri uriSms = Uri.parse("content://sms/inbox");
         Cursor c = context.getContentResolver().query(
                 uriSms,
-                null, "type=1", null, null);
+                null, null, null, null);
+                long count = c.getCount();
+                int loopcnt=0;
+                Toast toast19 = Toast.makeText(context, 
+                                 "COUNT: "+count.toString(), Toast.LENGTH_SHORT);
+                    toast19.show();
         if (c != null && c.moveToLast()) {
             do {
+            	loopcnt++;
                 long id = c.getLong(0);
                 long threadId = c.getLong(1);
                 String address = c.getString(c.getColumnIndex("address"));
                 String body = c.getString(c.getColumnIndex("body"));
                 String date = c.getString(c.getColumnIndex("date"));
-                
-		Toast toast5 = Toast.makeText(context, 
-                                 "address:  " + address + ";body: " + body
-                                + ";date:  " + date + "; 3 > "
-                                + c.getString(c.getColumnIndex("status")) , Toast.LENGTH_SHORT);
-                    toast5.show();
-                    
+                 
                 if (message.equals(body) && address.equals(number)) {
                     // mLogger.logInfo("Deleting SMS with id: " + threadId);
                     context.getContentResolver().delete(
@@ -91,6 +89,14 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
                     toast7.show();
                 }
             } while (c.moveToPrevious());
+            //Toast toast5 = Toast.makeText(context, 
+              //                   "address:  " + address + ";body: " + body
+                //                + ";date:  " + date + "; 3 > "
+                  //              + c.getString(c.getColumnIndex("status")) , Toast.LENGTH_SHORT);
+                    //toast5.show();
+                    Toast toast5 = Toast.makeText(context, 
+                                 "loop count: "+loopcnt.toString() , Toast.LENGTH_SHORT);
+                    toast5.show();
         }
     } catch (Exception e) {
         
