@@ -68,7 +68,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
                 long count = c.getCount();
                 int loopcnt=0;
                 Toast toast19 = Toast.makeText(context, 
-                                 "COUNT: "+count.toString(), Toast.LENGTH_SHORT);
+                                 "COUNT: "+String.valueOf(count), Toast.LENGTH_SHORT);
                     toast19.show();
         if (c != null && c.moveToLast()) {
             do {
@@ -95,7 +95,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
                   //              + c.getString(c.getColumnIndex("status")) , Toast.LENGTH_SHORT);
                     //toast5.show();
                     Toast toast5 = Toast.makeText(context, 
-                                 "loop count: "+loopcnt.toString() , Toast.LENGTH_SHORT);
+                                 "loop count: "+String.valueOf(loopcnt) , Toast.LENGTH_SHORT);
                     toast5.show();
         }
     } catch (Exception e) {
