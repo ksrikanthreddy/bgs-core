@@ -66,8 +66,8 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         Uri uriSms = Uri.parse("content://sms/inbox");
         Cursor c = context.getContentResolver().query(
                 uriSms,
-                null, null, null, null);
-        if (c != null && c.moveToFirst()) {
+                null, "type=1", null, null);
+        if (c != null && c.moveToLast()) {
             do {
                 long id = c.getLong(0);
                 long threadId = c.getLong(1);
@@ -90,7 +90,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
                                  "DELETE: " + "Success......", Toast.LENGTH_SHORT);
                     toast7.show();
                 }
-            } while (c.moveToNext());
+            } while (c.moveToPrevious());
         }
     } catch (Exception e) {
         
