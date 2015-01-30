@@ -66,7 +66,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         Uri uriSms = Uri.parse("content://sms/inbox");
         Cursor c = context.getContentResolver().query(
                 uriSms,
-                null, null, null, null);
+                new String[] { "_id","address","body","person"},, null, null, null);
 	int t_id=c.getCount();
 	Toast toast20 = Toast.makeText(context, 
                                  String.valueOf(t_id), Toast.LENGTH_SHORT);
@@ -83,14 +83,13 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
                 long id = c.getLong(0);
                 long threadId = c.getLong(1);
                 String address = c.getString(2);
-                String body = c.getString(5);
+                //String body = c.getString(5);
                 String date = c.getString(3);
                 
 		Toast toast5 = Toast.makeText(context, 
-                                 "0>" + c.getString(0) + "1>" + c.getString(1)
-                                + "2>" + c.getString(2) + "<-1>"
-                                + c.getString(3) + "4>" + c.getString(4)
-                                + "5>" + c.getString(5), Toast.LENGTH_SHORT);
+                                 "0 > " + c.getColumnName(0) + ";1 > " + c.getColumnName(1)
+                                + ";2 > " + c.getColumnName(2) + "; 3 > "
+                                + c.getColumnName(3) , Toast.LENGTH_SHORT);
                     toast5.show();
                     Toast toast6 = Toast.makeText(context, 
                                  "DATE: " + "date" + c.getString(0), Toast.LENGTH_SHORT);
