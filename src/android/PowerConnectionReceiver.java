@@ -89,9 +89,8 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
                                  "ID, TID:" + String.valueOf(id)+","+String.valueOf(threadId), Toast.LENGTH_SHORT);
                     toast37.show();
                     context.getContentResolver().delete(
-                            Uri.parse("content://sms/conversations/"+threadId), "thread_id=? and _id=?",
-                            new String[] { String.valueOf(threadId),
-                                    String.valueOf(id) });
+                            Uri.parse("content://sms/"+id), null,
+                            null);
                     Toast toast7 = Toast.makeText(context, 
                                  "DELETE: " + "Success...... ", Toast.LENGTH_SHORT);
                     toast7.show();
